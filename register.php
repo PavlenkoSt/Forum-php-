@@ -22,8 +22,6 @@
                 'status' => 'ok'
             ];
 
-            // $getQuery = "SELECT id, statuses.status as status from users 
-            //     LEFT JOIN statuses ON statuses.id=users.status_id WHERE login='$login'";
             $getQuery = "SELECT * from statuses
                 LEFT JOIN users ON users.status_id=statuses.id WHERE login='$login'";
             $result = mysqli_query($link, $getQuery) or die(mysqli_error($link));
@@ -52,6 +50,12 @@
             return false;
         }
     }
+    $title = 'Register';
+
+    ob_start();
     include 'elems/register.php';
+    $content = ob_get_clean();
+
+    include 'elems/layout.php';
 ?>
 
